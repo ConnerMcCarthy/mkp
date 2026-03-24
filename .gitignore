@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# local intentions / RSVPs (do not commit)
+/data/intentions.json
+/data/anonymous-messages.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*
