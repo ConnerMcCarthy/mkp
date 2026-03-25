@@ -12,12 +12,23 @@ export const site = {
   name: "MKP Hendersonville",
   org: "Mankind Project USA",
   tagline: "A weekly support group for men — newcomers welcome.",
-  /** IANA timezone for meeting times */
+  /**
+   * Used in the footer QR when NEXT_PUBLIC_SITE_URL is not set. Replace with
+   * your real domain before printing handouts, or set the env var instead.
+   */
+  publicUrlPlaceholder: "https://your-domain.example",
+  /**
+   * IANA zone for computing “next meeting” dates. UI shows `timezoneLabel`
+   * (EST) for consistency with how the circle talks about time.
+   */
   timezone: "America/New_York",
+  /** Shown everywhere we mention the zone (e.g. EST). */
+  timezoneLabel: "EST",
   /** Repeat weekly: day 0 = Sunday … 6 = Saturday */
-  meetingWeekday: 3 as const, // Wednesday example
-  meetingStartLocal: "19:00",
-  meetingEndLocal: "21:00",
+  meetingWeekday: 0 as const, // Sundays
+  /** 12-hour times, local to the circle */
+  meetingStartDisplay: "5:00 PM",
+  meetingEndDisplay: "7:00 PM",
   meetingLocation: "In person — update this address or link to map.",
   meetingLocationNote:
     "Replace with your venue, Zoom link, or hybrid details.",
@@ -34,6 +45,10 @@ export const site = {
     stewardPhone: "",
   },
 } as const;
+
+export function getMeetingTimeRangeLabel(): string {
+  return `${site.meetingStartDisplay} – ${site.meetingEndDisplay}`;
+}
 
 export function getMeetingWeekdayLabel(): string {
   const days = [

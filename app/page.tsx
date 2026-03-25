@@ -1,8 +1,20 @@
 import Link from "next/link";
-import { NextMeetingCard } from "./components/next-meeting-card";
+import { HomeNextMeeting } from "./components/home-next-meeting";
+import { getWeekSnapshot, readIntentions } from "@/lib/intentions-store";
+import { getUpcomingMeetingDates } from "@/lib/meeting-weeks";
 import { site } from "@/lib/site-config";
 
-export default function HomePage() {
+/** Next meeting date is computed from “today” — avoid a stale build-time snapshot. */
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const upcoming = getUpcomingMeetingDates(1);
+  const nextMeeting = upcoming[0] ?? null;
+  const data = await readIntentions();
+  const snapshot = nextMeeting
+    ? getWeekSnapshot(data, nextMeeting.key)
+    : null;
+
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6">
       <div className="border-l-4 border-mkp-yellow bg-mkp-yellow-soft px-4 py-3 text-sm text-mkp-ink">
@@ -15,63 +27,37 @@ export default function HomePage() {
       </h1>
       <p className="mt-3 max-w-2xl text-lg text-mkp-muted">{site.tagline}</p>
 
-      <div className="mt-8 flex flex-wrap gap-3">
-        <Link
-          href="/schedule"
-          className="inline-flex items-center justify-center rounded-lg bg-mkp-blue px-4 py-2.5 text-sm font-medium text-white hover:bg-mkp-blue-dark"
-        >
-          Schedule &amp; format
-        </Link>
-        <Link
-          href="/resources"
-          className="inline-flex items-center justify-center rounded-lg border border-mkp-border bg-mkp-surface px-4 py-2.5 text-sm font-medium text-mkp-ink hover:border-mkp-blue hover:text-mkp-blue"
-        >
-          Resources &amp; PDFs
-        </Link>
-        <Link
-          href="/messages"
-          className="inline-flex items-center justify-center rounded-lg border border-mkp-border bg-mkp-surface px-4 py-2.5 text-sm font-medium text-mkp-ink hover:border-mkp-blue hover:text-mkp-blue"
-        >
-          Anonymous messages
-        </Link>
-        <Link
-          href="/contact"
-          className="inline-flex items-center justify-center rounded-lg border border-mkp-border bg-mkp-surface px-4 py-2.5 text-sm font-medium text-mkp-ink hover:border-mkp-blue hover:text-mkp-blue"
-        >
-          Contact / newcomer path
-        </Link>
+      <div className="mt-10">
+        <HomeNextMeeting nextMeeting={nextMeeting} snapshot={snapshot} />
       </div>
 
-      <div className="mt-12 grid gap-8 sm:grid-cols-2">
-        <NextMeetingCard />
-        <section
-          className="rounded-xl border border-mkp-border bg-mkp-surface p-6 shadow-sm"
-          aria-labelledby="quick-facts-heading"
+      <section
+        className="mt-12 rounded-xl border border-mkp-border bg-mkp-surface p-6 shadow-sm"
+        aria-labelledby="quick-facts-heading"
+      >
+        <h2
+          id="quick-facts-heading"
+          className="text-sm font-semibold uppercase tracking-wide text-mkp-muted"
         >
-          <h2
-            id="quick-facts-heading"
-            className="text-sm font-semibold uppercase tracking-wide text-mkp-muted"
-          >
-            Quick facts
-          </h2>
-          <ul className="mt-4 list-inside list-disc space-y-2 text-mkp-ink">
-            <li>Open to new men; ask about expectations in advance.</li>
-            <li>Join the Google Group for announcements (see Resources).</li>
-            <li>
-              King training signup:{" "}
-              <Link
-                href={site.links.kingSignup}
-                className="font-medium text-mkp-blue underline-offset-2 hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                MKP USA
-              </Link>
-              .
-            </li>
-          </ul>
-        </section>
-      </div>
+          Quick facts
+        </h2>
+        <ul className="mt-4 list-inside list-disc space-y-2 text-mkp-ink">
+          <li>Open to new men; ask about expectations in advance.</li>
+          <li>Join the Google Group for announcements (see Resources).</li>
+          <li>
+            King training signup:{" "}
+            <Link
+              href={site.links.kingSignup}
+              className="font-medium text-mkp-blue underline-offset-2 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MKP USA
+            </Link>
+            .
+          </li>
+        </ul>
+      </section>
 
       <section className="mt-14" aria-labelledby="needs-heading">
         <h2
@@ -124,7 +110,7 @@ export default function HomePage() {
         <ul className="mt-6 space-y-3 border-t border-mkp-border pt-6">
           {[
             "Automated email via Google Groups with urgency tiers.",
-            "Attendance & intention: RSVP yes/no on the Schedule page (expand with DB later).",
+            "Attendance & intention: public Who’s coming page + Schedule signup.",
             "Anonymous channel: public board on the Messages page (no name on posts).",
             "King signup reminders with clear links and dates.",
             "Polls and optional member login when the circle is ready.",

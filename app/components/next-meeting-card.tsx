@@ -1,4 +1,8 @@
-import { getMeetingWeekdayLabel, site } from "@/lib/site-config";
+import {
+  getMeetingTimeRangeLabel,
+  getMeetingWeekdayLabel,
+  site,
+} from "@/lib/site-config";
 
 export function NextMeetingCard() {
   const day = getMeetingWeekdayLabel();
@@ -14,9 +18,9 @@ export function NextMeetingCard() {
         Typical week
       </h2>
       <p className="mt-2 text-xl font-semibold text-mkp-ink">
-        {day}s · {site.meetingStartLocal} – {site.meetingEndLocal}
+        {day}s · {getMeetingTimeRangeLabel()}
       </p>
-      <p className="mt-1 text-sm text-mkp-muted">{site.timezone}</p>
+      <p className="mt-1 text-sm text-mkp-muted">{site.timezoneLabel}</p>
       <p className="mt-4 text-mkp-ink">{site.meetingLocation}</p>
       <p className="mt-2 text-sm text-mkp-muted">
         {site.meetingLocationNote}

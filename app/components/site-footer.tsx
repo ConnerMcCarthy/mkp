@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FooterSiteQr } from "./footer-site-qr";
 import { site } from "@/lib/site-config";
 
 export function SiteFooter() {
@@ -29,6 +30,7 @@ export function SiteFooter() {
           </Link>
           .
         </p>
+        <FooterSiteQr />
       </div>
     </footer>
   );

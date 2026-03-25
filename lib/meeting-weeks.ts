@@ -12,7 +12,7 @@ const WEEKDAY_NAMES = [
   "Saturday",
 ] as const;
 
-/** Calendar dates (YYYY-MM-DD in `site.timezone`) for upcoming circle nights. */
+/** Calendar dates (YYYY-MM-DD in `site.timezone`, US Eastern) for upcoming circle nights. */
 export function getUpcomingMeetingDates(
   count: number,
 ): { key: string; label: string }[] {

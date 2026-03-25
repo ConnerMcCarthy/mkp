@@ -27,6 +27,8 @@ export async function submitIntention(
   try {
     await upsertRsvp(weekKey, name, status);
     revalidatePath("/schedule");
+    revalidatePath("/");
+    revalidatePath("/attendance");
     return { ok: true };
   } catch {
     return {
@@ -47,6 +49,8 @@ export async function submitKingClaim(
     return { ok: false, error: result.error };
   }
   revalidatePath("/schedule");
+  revalidatePath("/");
+  revalidatePath("/attendance");
   return { ok: true };
 }
 
@@ -58,6 +62,8 @@ export async function submitKingRelease(
   const secret = String(formData.get("secret") ?? "");
   const ok = await releaseKing(weekKey, secret);
   revalidatePath("/schedule");
+  revalidatePath("/");
+  revalidatePath("/attendance");
   if (!ok) {
     return {
       ok: false,

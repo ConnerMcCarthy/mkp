@@ -50,7 +50,7 @@ export default async function SchedulePage() {
         </h2>
         <p className="max-w-2xl text-sm text-mkp-muted">
           Dates follow your circle night in{" "}
-          <span className="text-mkp-ink">{site.timezone}</span>. Data lives in{" "}
+          <span className="text-mkp-ink">{site.timezoneLabel}</span>. Data lives in{" "}
           <code className="rounded bg-mkp-surface-subtle px-1 text-mkp-ink">
             data/intentions.json
           </code>{" "}
