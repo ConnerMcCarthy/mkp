@@ -21,10 +21,9 @@ export default async function SchedulePage() {
   const intentionsByWeek = Object.fromEntries(
     meetings.map((m) => [m.key, getWeekSnapshot(data, m.key)]),
   );
-  const showStewardRelease = Boolean(process.env.STEWARD_SECRET);
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6">
+    <main className="mx-auto w-full max-w-3xl px-4 py-10 pb-14 sm:px-6">
       <p className="text-sm font-medium text-mkp-blue">
         <Link href="/" className="hover:underline">
           Home
@@ -36,8 +35,8 @@ export default async function SchedulePage() {
       </h1>
       <p className="mt-3 max-w-2xl text-mkp-muted">
         Replace placeholders below with your circle&apos;s open / closed weeks,
-        holidays, and virtual links. Intention and King signup are stored on the
-        server (see note below the forms).
+        holidays, and virtual links. RSVP intentions are below; King signup
+        is on its own page (see nav).
       </p>
 
       <div className="mt-10">
@@ -46,7 +45,7 @@ export default async function SchedulePage() {
 
       <div className="mt-12 space-y-4">
         <h2 className="text-xl font-semibold text-mkp-ink">
-          RSVP &amp; King for upcoming meetings
+          RSVP for upcoming meetings
         </h2>
         <p className="max-w-2xl text-sm text-mkp-muted">
           Dates follow your circle night in{" "}
@@ -60,7 +59,6 @@ export default async function SchedulePage() {
         <ScheduleIntentions
           meetings={meetings}
           intentionsByWeek={intentionsByWeek}
-          showStewardRelease={showStewardRelease}
         />
       </div>
 

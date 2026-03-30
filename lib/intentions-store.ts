@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { MAX_WEEK_DESCRIPTION_LENGTH } from "./intentions-constants";
 
 const DATA_PATH = path.join(process.cwd(), "data", "intentions.json");
 
@@ -19,6 +20,8 @@ export type KingRecord = {
 export type WeekIntentions = {
   rsvps: RsvpRecord[];
   king: KingRecord | null;
+  /** Short note about the evening’s focus (optional). Set on King signup. */
+  weekDescription?: string;
 };
 
 export type IntentionsData = {
@@ -139,9 +142,48 @@ export async function releaseKing(
   return true;
 }
 
+function normalizeWeekDescription(raw: unknown): string | undefined {
+  if (typeof raw !== "string") return undefined;
+  const t = raw.trim().replace(/\r\n/g, "\n");
+  if (!t) return undefined;
+  return t.slice(0, MAX_WEEK_DESCRIPTION_LENGTH);
+}
+
 export function getWeekSnapshot(
   data: IntentionsData,
   weekKey: string,
 ): WeekIntentions {
-  return data.weeks[weekKey] ?? emptyWeek();
+  const w = data.weeks[weekKey];
+  if (!w) return emptyWeek();
+  const weekDescription = normalizeWeekDescription(w.weekDescription);
+  return {
+    rsvps: Array.isArray(w.rsvps) ? w.rsvps : [],
+    king: w.king ?? null,
+    ...(weekDescription ? { weekDescription } : {}),
+  };
+}
+
+export async function setWeekDescription(
+  weekKey: string,
+  description: string,
+): Promise<void> {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(weekKey)) {
+    throw new Error("Invalid week");
+  }
+  const trimmed = description.trim().replace(/\r\n/g, "\n");
+  if (trimmed.length > MAX_WEEK_DESCRIPTION_LENGTH) {
+    throw new Error("Description too long");
+  }
+
+  const data = await readIntentions();
+  const week = data.weeks[weekKey] ?? emptyWeek();
+  const next: WeekIntentions = {
+    rsvps: week.rsvps ?? [],
+    king: week.king ?? null,
+  };
+  if (trimmed) {
+    next.weekDescription = trimmed;
+  }
+  data.weeks[weekKey] = next;
+  await writeIntentions(data);
 }

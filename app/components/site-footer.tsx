@@ -4,8 +4,12 @@ import { site } from "@/lib/site-config";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-mkp-border bg-mkp-surface-subtle px-4 py-8 sm:px-6">
-      <div className="mx-auto flex max-w-3xl flex-col gap-4 text-sm text-mkp-muted">
+    <footer className="mt-auto border-t border-mkp-border bg-mkp-surface px-4 py-10 sm:px-6">
+      <div
+        className="mx-auto mb-6 h-px max-w-3xl bg-gradient-to-r from-transparent via-mkp-gold/50 to-transparent"
+        aria-hidden
+      />
+      <div className="mx-auto flex max-w-3xl flex-col gap-5 text-sm text-mkp-muted">
         <p>
           <Link
             href={site.links.mkpUsa}

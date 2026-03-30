@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6">
+    <main className="mx-auto w-full max-w-3xl px-4 py-10 pb-14 sm:px-6">
       <p className="text-sm font-medium text-mkp-blue">
         <Link href="/" className="hover:underline">
           Home
@@ -29,7 +29,7 @@ export default function ResourcesPage() {
       </p>
 
       <ul className="mt-10 space-y-4">
-        <li className="rounded-xl border border-mkp-border bg-mkp-surface p-5 shadow-sm">
+        <li className="rounded-xl border border-mkp-border bg-mkp-surface p-5 shadow-sm transition-shadow duration-200 hover:border-mkp-blue/30 hover:shadow-md">
           <h2 className="font-semibold text-mkp-ink">Google Group</h2>
           <p className="mt-2 text-sm text-mkp-muted">
             Announcements, attachments, and email preferences. Wire your real
@@ -37,33 +37,33 @@ export default function ResourcesPage() {
           </p>
           <a
             href={site.links.googleGroup}
-            className="mt-3 inline-block text-sm font-medium text-mkp-blue hover:underline"
+            className="mt-3 inline-block text-sm font-medium text-mkp-blue underline-offset-2 transition-colors hover:underline"
             target="_blank"
             rel="noopener noreferrer"
           >
             Open Google Group →
           </a>
         </li>
-        <li className="rounded-xl border border-mkp-border bg-mkp-surface p-5 shadow-sm">
+        <li className="rounded-xl border border-mkp-border bg-mkp-surface p-5 shadow-sm transition-shadow duration-200 hover:border-mkp-blue/30 hover:shadow-md">
           <h2 className="font-semibold text-mkp-ink">Welcome PDF (example)</h2>
           <p className="mt-2 text-sm text-mkp-muted">
             Link to Drive/Dropbox or hosted PDF for newcomers.
           </p>
           <a
             href={site.links.pdfWelcome}
-            className="mt-3 inline-block text-sm font-medium text-mkp-blue hover:underline"
+            className="mt-3 inline-block text-sm font-medium text-mkp-blue underline-offset-2 transition-colors hover:underline"
           >
             Download / view PDF →
           </a>
         </li>
-        <li className="rounded-xl border border-mkp-border bg-mkp-surface p-5 shadow-sm">
+        <li className="rounded-xl border border-mkp-border bg-mkp-surface p-5 shadow-sm transition-shadow duration-200 hover:border-mkp-blue/30 hover:shadow-md">
           <h2 className="font-semibold text-mkp-ink">King &amp; trainings</h2>
           <p className="mt-2 text-sm text-mkp-muted">
             Official signup paths through Mankind Project USA.
           </p>
           <a
             href={site.links.kingSignup}
-            className="mt-3 inline-block text-sm font-medium text-mkp-blue hover:underline"
+            className="mt-3 inline-block text-sm font-medium text-mkp-blue underline-offset-2 transition-colors hover:underline"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -1,4 +1,6 @@
 import type { AnonymousMessage } from "@/lib/anonymous-messages-store";
+import { MessageLikeButton } from "./message-like-button";
+import { PollBoardCard } from "./poll-board-card";
 
 function formatWhen(iso: string): string {
   try {
@@ -18,7 +20,7 @@ type Props = {
 export function MessagesBoard({ messages }: Props) {
   return (
     <section
-      className="rounded-xl border border-mkp-border bg-mkp-surface p-6 shadow-sm"
+      className="rounded-xl border border-mkp-border bg-mkp-surface p-6 shadow-md ring-1 ring-mkp-navy/5"
       aria-labelledby="public-board-heading"
     >
       <h2
@@ -28,8 +30,8 @@ export function MessagesBoard({ messages }: Props) {
         Public board
       </h2>
       <p className="mt-2 text-sm text-mkp-muted">
-        Newest first. Authors stay anonymous; the text is visible to anyone who
-        visits this page.
+        Newest first. Authors stay anonymous. You can post a message or a poll;
+        likes and poll votes are simple public counts (no sign-in).
       </p>
 
       {messages.length === 0 ? (
@@ -41,10 +43,19 @@ export function MessagesBoard({ messages }: Props) {
               key={m.id}
               className="rounded-lg border border-mkp-border bg-mkp-surface-subtle p-4"
             >
-              <p className="text-xs text-mkp-muted">{formatWhen(m.createdAt)}</p>
-              <p className="mt-2 whitespace-pre-wrap text-sm text-mkp-ink">
-                {m.body}
-              </p>
+              <div className="flex flex-wrap items-start justify-between gap-2 gap-y-1">
+                <p className="text-xs text-mkp-muted">
+                  {formatWhen(m.createdAt)}
+                </p>
+                <MessageLikeButton messageId={m.id} likeCount={m.likes} />
+              </div>
+              {m.type === "poll" ? (
+                <PollBoardCard message={m} />
+              ) : (
+                <p className="mt-2 whitespace-pre-wrap text-sm text-mkp-ink">
+                  {m.body}
+                </p>
+              )}
             </li>
           ))}
         </ul>
