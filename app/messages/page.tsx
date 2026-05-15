@@ -28,12 +28,7 @@ export default async function MessagesPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-mkp-muted">
         Post without your name — everyone in the community can read what you
-        write. Same storage note as the{" "}
-        <Link href="/schedule" className="text-mkp-blue hover:underline">
-          Schedule
-        </Link>{" "}
-        page: a JSON file on the server works on a VPS; use a database if you
-        deploy serverless.
+        write.
       </p>
 
       <div className="mt-10 space-y-10">

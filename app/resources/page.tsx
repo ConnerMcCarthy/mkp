@@ -21,11 +21,6 @@ export default function ResourcesPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-mkp-muted">
         Central place for the Google Group, PDFs, and official MKP links.
-        Update URLs in{" "}
-        <code className="rounded bg-mkp-surface-subtle px-1.5 py-0.5 text-mkp-ink">
-          lib/site-config.ts
-        </code>
-        .
       </p>
 
       <ul className="mt-10 space-y-4">

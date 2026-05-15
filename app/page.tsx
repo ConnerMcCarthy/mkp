@@ -17,16 +17,16 @@ export default async function HomePage() {
 
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-10 pb-14 sm:px-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+      <div className="flex flex-col gap-5">
         <div className="min-w-0">
           <h1 className="text-3xl font-semibold tracking-tight text-mkp-ink sm:text-4xl">
             {site.name}
           </h1>
           <p className="mt-3 max-w-2xl text-lg text-mkp-muted">
-            {site.tagline}
+            A weekly support group for men.
           </p>
         </div>
-        <div className="flex w-full shrink-0 flex-col flex-wrap gap-3 self-stretch sm:w-auto sm:max-w-xl sm:flex-row sm:items-start sm:justify-end sm:self-start sm:gap-3 lg:gap-4">
+        <div className="flex w-full flex-col flex-wrap gap-3 sm:flex-row sm:items-start sm:gap-3 lg:gap-4">
           <Link
             href="/messages"
             className="inline-flex min-h-[3.25rem] min-w-[8.5rem] flex-1 items-center justify-center rounded-xl bg-mkp-blue px-8 py-4 text-center text-base font-semibold text-white shadow-md shadow-mkp-navy/10 transition-colors duration-200 hover:bg-mkp-blue-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mkp-blue focus-visible:ring-offset-2 active:translate-y-px sm:min-h-[3.5rem] sm:min-w-[8.5rem] sm:flex-initial sm:px-8 sm:py-4 sm:text-lg"

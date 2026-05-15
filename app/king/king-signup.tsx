@@ -91,19 +91,6 @@ export function KingSignup({
         <h2 id="king-heading" className="text-lg font-semibold text-mkp-ink">
           King / leader for the week
         </h2>
-        <p className="mt-2 text-sm text-mkp-muted">
-          One brother volunteers as King for that evening. Pick the week on the
-          calendar or from the list, then sign up. When someone claims the slot,
-          it closes and their name is public on{" "}
-          <Link href="/attendance" className="text-mkp-blue hover:underline">
-            Who’s coming
-          </Link>
-          . RSVP without King signup stays on the{" "}
-          <Link href="/schedule" className="text-mkp-blue hover:underline">
-            Schedule
-          </Link>{" "}
-          page.
-        </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10">
           <MeetingWeekCalendar

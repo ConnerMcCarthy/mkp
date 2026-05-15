@@ -92,16 +92,6 @@ export function ScheduleIntentions({
         >
           Pick a week &amp; set your intention
         </h2>
-        <p className="mt-2 text-sm text-mkp-muted">
-          Choose the meeting on the calendar or from the list, then say whether
-          you&apos;ll be there. Use the name men will recognize — your latest
-          answer replaces the last one for that week. King signup and the
-          optional week note live on the{" "}
-          <Link href="/king" className="text-mkp-blue hover:underline">
-            King signup
-          </Link>{" "}
-          page.
-        </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-10">
           <MeetingWeekCalendar

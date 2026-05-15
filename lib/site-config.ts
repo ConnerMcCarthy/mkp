@@ -16,7 +16,7 @@ export const site = {
    * Used in the footer QR when NEXT_PUBLIC_SITE_URL is not set. Replace with
    * your real domain before printing handouts, or set the env var instead.
    */
-  publicUrlPlaceholder: "https://your-domain.example",
+  publicUrlPlaceholder: "https://mkphendo.com",
   /**
    * IANA zone for computing “next meeting” dates. UI shows `timezoneLabel`
    * (EST) for consistency with how the circle talks about time.
@@ -29,9 +29,8 @@ export const site = {
   /** 12-hour times, local to the circle */
   meetingStartDisplay: "5:00 PM",
   meetingEndDisplay: "7:00 PM",
-  meetingLocation: "In person — update this address or link to map.",
-  meetingLocationNote:
-    "Replace with your venue, Zoom link, or hybrid details.",
+  meetingLocation: "900 Blythe St, Hendersonville, NC 28791",
+  meetingLocationNote: "In person.",
   /** Placeholder links — swap for your Google Group, Drive PDFs, etc. */
   links: {
     googleGroup: "https://groups.google.com/",

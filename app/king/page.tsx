@@ -33,11 +33,7 @@ export default async function KingPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-sm text-mkp-muted">
         Claim an open King slot for a circle night or add an optional note for
-        the week. Data is stored with RSVPs in{" "}
-        <code className="rounded bg-mkp-surface-subtle px-1 text-mkp-ink">
-          data/intentions.json
-        </code>
-        .
+        the week.
       </p>
 
       <div className="mt-10">

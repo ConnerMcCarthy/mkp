@@ -144,10 +144,6 @@ export function MeetingWeekCalendar({
           →
         </button>
       </div>
-      <p className="mt-3 text-xs text-mkp-muted">
-        Highlighted dates are circle nights. Click to choose that week — the
-        meeting list beside this stays in sync.
-      </p>
       <div
         className="mt-4 grid grid-cols-7 gap-1 text-center text-xs sm:text-sm"
         role="grid"
